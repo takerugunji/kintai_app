@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="width: 28rem; margin: 100px auto;">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-header text-white bg-success">登録結果</div>
+        <div class="card-body">
+            <p class="card-text">出勤場所：{{ place }}</p>
+            <p class="card-text">{{ comment | linebreaksbr }}</p>
+            <p class="card-text text-center"><a class="btn btn-success" href="{% url 'kintaiapp:index' %}" role="button">トップページに戻る</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

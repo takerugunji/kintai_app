@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- 重複打刻された場合のカスタムエラーページ -->
+<p>すでに打刻済みです。</p>
+<p>トップページに戻り、打刻をやり直してください。</p>
+<p class="card-text text-center"><a class="btn btn-success" href="{% url 'kintaiapp:index' %}" role="button">トップページに戻る</a></p>
+
+{% endblock %}

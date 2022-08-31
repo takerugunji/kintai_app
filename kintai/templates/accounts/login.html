@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if form.errors %}
+<p>ユーザー名とパスワードが一致しません。</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>アクセス権のあるアカウントでログインしてください。</p>
+    {% else %}
+    <p>ログインしてください。</p>
+    {% endif %}
+{% endif %}
+
+<div class="container" style="width: 20rem; margin: 100px auto;">
+    <form class="card" method="post" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+    <div class="card-header text-center text-white bg-success">ログイン</div>
+        <div class="card-body">
+            <p class="card-text">{{ form.username.label_tag }}</p>
+            <p class="card-text">{{ form.username }}</p>
+            <p class="card-text">{{ form.password.label_tag }}</p>
+            <p class="card-text">{{ form.password }}</p>
+            <p class="card-text text-center"><input class="btn btn-success" type="submit" value="ログイン" /></p>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </form>
+</div>
+{% endblock %}

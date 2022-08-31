@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div class="container" style="width: 28rem; margin: 100px auto;">
+            <form class="card" method="POST" action="{% url 'kintaiapp:result' %}">
+                {% csrf_token %}
+                <div class="card-header text-white bg-success">{{  user  }}さん</div>
+                    <div class="card-body">
+                        <p class="card-text text-center m-2" style="font-size: 1.5rem;" id="date">
+                            <script>
+                            var now = new Date()
+                            var weekdays = "日月火水木金土"
+                            str = (now.getFullYear()) + "/" + (now.getMonth() + 1) + "/" + (now.getDate()) + "(" + weekdays[now.getDay()] + ")";
+                            document.write(str);
+                            </script>
+                        </p>
+                        <p class="card-text display-3 text-center" id="time">
+                            <script>
+                            time();
+                            function time(){
+                                var now = new Date();
+                                document.getElementById("time").innerHTML = now.toLocaleTimeString();
+                            }
+                            setInterval('time()',1000);
+                            </script>
+                        </p>
+                        <p class="card-text text-center m-3">出勤場所：<input type="hidden" name="place">{{ form.place }}</p>
+                        <div class="row justify-content-center m-1">
+                            <div class="col-5">
+                                <button class="btn btn-success" style="width: 9rem; height: 9rem; font-size: 2rem;" type="submit" name="in_out" value="1">出勤</button>
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-danger" style="width: 9rem; height: 9rem; font-size: 2rem;" type="submit" name="in_out" value="2">退勤</button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center m-1">
+                            <div class="col-5">
+                                <button class="btn btn-secondary" style="width: 9rem; height: 3rem; font-size: 1rem;" type="submit" name="in_out" value="3">休憩入り</button>
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-secondary" style="width: 9rem; height: 3rem; font-size: 1rem;" type="submit" name="in_out" value="4">休憩戻り</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+    {% endif %}
+{% endblock %}
