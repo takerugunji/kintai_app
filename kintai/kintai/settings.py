@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'kintai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DATABASE_NAME'], # シークレット格納先を参照
-        'USER': os.environ['DATABASE_USER'], # シークレット格納先を参照
-        'PASSWORD': os.environ['DATABASE_PASSWORD'], # シークレット格納先を参照
+        'NAME': 'kintai_db', #os.environ['DATABASE_NAME'],
+        'USER': 'djangouser', #os.environ['DATABASE_USER'],
+        'PASSWORD': 'djangopassword', #os.environ['DATABASE_PASSWORD'],
         'HOST': 'localhost', # ホスト名作成後載記載
         'PORT': 5432,
     }
