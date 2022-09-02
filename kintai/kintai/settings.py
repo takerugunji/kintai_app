@@ -15,7 +15,7 @@ import os, django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 '''settingsの移動に伴う構成変更'''
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'kintai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kintai_db', #os.environ['DATABASE_NAME'],
-        'USER': 'djangouser', #os.environ['DATABASE_USER'],
-        'PASSWORD': 'djangopassword', #os.environ['DATABASE_PASSWORD'],
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
         'HOST': 'localhost', # ホスト名作成後載記載
         'PORT': 5432,
     }
