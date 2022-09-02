@@ -41,7 +41,7 @@ PARENT_DIR = Path(__file__).resolve().parent.parent.parent.parent
 '''本番環境'''
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', 'kintai-app-20220901.herokuapp.com']
 
 # Application definition
 
