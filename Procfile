@@ -1,1 +1,1 @@
-web: gunicorn kintai.wsgi --log-file -
+web: gunicorn kintai.kintai.wsgi --log-file -
