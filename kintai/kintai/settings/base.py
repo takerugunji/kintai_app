@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os, django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # default
@@ -26,21 +27,21 @@ PARENT_DIR = Path(__file__).resolve().parent.parent.parent.parent
 # default
 #SECRET_KEY = 'XXXX'
 '''シークレットキー格納先'''
-with open(f'{PARENT_DIR}/auth/secret_key.cnf') as f:
-    secret_key = f.read().strip()
+#with open(f'{PARENT_DIR}/auth/secret_key.cnf') as f:
+#    secret_key = f.read().strip()
 
-SECRET_KEY = secret_key
+#SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 '''開発環境'''
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 '''本番環境'''
-#DEBUG = False
+DEBUG = False
 
-#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -102,14 +103,13 @@ WSGI_APPLICATION = 'kintai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': name_db, # シークレット格納先を参照
-#        'USER': user_db, # シークレット格納先を参照
-#        'PASSWORD': pswd_db, # シークレット格納先を参照
+        'NAME': os.environ['DATABASE_NAME'], # シークレット格納先を参照
+        'USER': os.environ['DATABASE_USER'], # シークレット格納先を参照
+        'PASSWORD': os.environ['DATABASE_PASSWORD'], # シークレット格納先を参照
         'HOST': 'localhost', # ホスト名作成後載記載
         'PORT': 5432,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -149,7 +149,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -159,3 +159,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 未ログインユーザーのログインページへのリダイレクト
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'kintaiapp:index'
+
+# Heroku settings
+SECRET_KEY = os.environ['SECRET_KEY']
+
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Static files (CSS, JavaScript, Images)
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#)
+
+MIDDLEWARE += [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+# HerokuのConfigを読み込み
+django_heroku.settings(locals())
