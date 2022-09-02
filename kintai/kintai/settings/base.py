@@ -18,25 +18,17 @@ import os, django_heroku
 #BASE_DIR = Path(__file__).resolve().parent.parent
 '''settingsの移動に伴う構成変更'''
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-PARENT_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# default
-#SECRET_KEY = 'XXXX'
-'''シークレットキー格納先'''
-#with open(f'{PARENT_DIR}/auth/secret_key.cnf') as f:
-#    secret_key = f.read().strip()
 
-#SECRET_KEY = secret_key
+'''シークレットキー格納先'''
+# Heroku settings
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-'''開発環境'''
-#DEBUG = True
-
-#ALLOWED_HOSTS = []
 
 '''本番環境'''
 DEBUG = False
@@ -89,16 +81,6 @@ WSGI_APPLICATION = 'kintai.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-'''シークレットパラメータ格納先'''
-#with open(f'{PARENT_DIR}/auth/name_db.cnf') as f:
-#    name_db = f.read().strip()
-
-#with open(f'{PARENT_DIR}/auth/pswd_db.cnf') as f:
-#    pswd_db = f.read().strip()
-
-#with open(f'{PARENT_DIR}/auth/user_db.cnf') as f:
-#    user_db = f.read().strip()
 
 DATABASES = {
     'default': {
@@ -159,21 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 未ログインユーザーのログインページへのリダイレクト
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'kintaiapp:index'
-
-# Heroku settings
-SECRET_KEY = os.environ['SECRET_KEY']
-
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# Static files (CSS, JavaScript, Images)
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
-#)
 
 MIDDLEWARE += [
     'whitenoise.middleware.WhiteNoiseMiddleware',
