@@ -31,7 +31,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 '''本番環境'''
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'kintai-app-20220901.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'kintai-app-20220901.herokuapp.com']
 
 # Application definition
 

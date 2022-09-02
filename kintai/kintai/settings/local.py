@@ -90,21 +90,21 @@ WSGI_APPLICATION = 'kintai.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 '''シークレットパラメータ格納先'''
-#with open(f'{PARENT_DIR}/auth/name_db.cnf') as f:
-#    name_db = f.read().strip()
+with open(f'{PARENT_DIR}/auth/name_db.cnf') as f:
+    name_db = f.read().strip()
 
-#with open(f'{PARENT_DIR}/auth/pswd_db.cnf') as f:
-#    pswd_db = f.read().strip()
+with open(f'{PARENT_DIR}/auth/pswd_db.cnf') as f:
+    pswd_db = f.read().strip()
 
-#with open(f'{PARENT_DIR}/auth/user_db.cnf') as f:
-#    user_db = f.read().strip()
+with open(f'{PARENT_DIR}/auth/user_db.cnf') as f:
+    user_db = f.read().strip()
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': name_db, # シークレット格納先を参照
-#        'USER': user_db, # シークレット格納先を参照
-#        'PASSWORD': pswd_db, # シークレット格納先を参照
+        'NAME': name_db, # シークレット格納先を参照
+        'USER': user_db, # シークレット格納先を参照
+        'PASSWORD': pswd_db, # シークレット格納先を参照
         'HOST': 'localhost', # ホスト名作成後載記載
         'PORT': 5432,
     }
