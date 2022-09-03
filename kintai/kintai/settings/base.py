@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'kintai.wsgi.application'
+WSGI_APPLICATION = 'kintai.kintai.wsgi.application'
 
 
 # Database
