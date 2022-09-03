@@ -1,1 +1,1 @@
-web: gunicorn kintai.kintai.wsgi --log-file -
+web: gunicorn --chdir kintai kintai.wsgi --log-file -
