@@ -36,14 +36,14 @@ ALLOWED_HOSTS = ['127.0.0.1', 'herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'kintaiapp.apps.KintaiappConfig', # 勤怠管理アプリ作成
-    'accounts.apps.AccountsConfig', # ログイン用アプリ追加
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'kintaiapp.apps.KintaiappConfig', # 勤怠管理アプリ作成
+    'accounts.apps.AccountsConfig', # ログイン用アプリ追加
 ]
 
 MIDDLEWARE = [
