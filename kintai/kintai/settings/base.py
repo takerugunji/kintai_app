@@ -140,6 +140,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'kintaiapp:index'
 
+'''セッションタイムアウト'''
+SESSION_COOKIE_AGE = 3600 # 60分でセッションタイムアウト
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # ブラウザを閉じたらセッションアウト
+
 MIDDLEWARE += [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
